@@ -460,11 +460,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             initCharts();
             
-            // 添加示例記錄
-            addRecord(10, 52, "2023-06-08");
-            addRecord(21.1, 115, "2023-06-15");
-            updateRecordsTable();
-            
+         // 先檢查 localStorage 有沒有紀錄
+let records = JSON.parse(localStorage.getItem('records') || '[]');
+if (records.length === 0) {
+    // 只有當沒有任何紀錄時才添加示例記錄
+    addRecord(10, 52, "2023-06-08");
+    addRecord(21.1, 115, "2023-06-15");
+}
+updateRecordsTable();
+          
             // 添加記錄功能
             document.querySelector('.add-record').addEventListener('click', function() {
                 const distance = parseFloat(document.querySelector('.distance-input').value);
