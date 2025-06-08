@@ -460,12 +460,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             initCharts();
             
-         // 先檢查 localStorage 有沒有紀錄
-let records = JSON.parse(localStorage.getItem('records') || '[]');
-if (records.length === 0) {
-    // 只有當沒有任何紀錄時才添加示例記錄
+         let records = JSON.parse(localStorage.getItem('records') || '[]');
+let initialized = localStorage.getItem('initialized');
+
+if (!initialized) {
+    // 只有第一次載入才加示範資料
     addRecord(10, 52, "2023-06-08");
     addRecord(21.1, 115, "2023-06-15");
+    localStorage.setItem('initialized', 'yes');
 }
 updateRecordsTable();
           
