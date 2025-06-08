@@ -464,9 +464,6 @@
 let initialized = localStorage.getItem('initialized');
 
 if (!initialized) {
-    // 只有第一次載入才加示範資料
-    addRecord(10, 52, "2023-06-08");
-    addRecord(21.1, 115, "2023-06-15");
     localStorage.setItem('initialized', 'yes');
 }
 updateRecordsTable();
